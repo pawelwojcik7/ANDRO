@@ -29,6 +29,7 @@ public class PobieranieService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         typ = intent.getStringExtra("typ");
+
         rozmiar = Integer.parseInt(intent.getStringExtra("rozmiar"));
         System.out.println("Typ w asdasd "+ typ);
         System.out.println("ROZMIAR W SADKAJSD ASDASDAS:D!!!!!!!!!!!!!!!!!!!!!!!!!! TO  "+ rozmiar);
@@ -36,6 +37,21 @@ public class PobieranieService extends IntentService {
         System.out.println(mAdres);
         Log.d("PS", "adres: " + mAdres);
         HttpURLConnection polaczenie = null;
+        try {
+            URL url = new URL(mAdres);
+            polaczenie=(HttpURLConnection) url.openConnection();
+            polaczenie.setRequestMethod("GET");
+            polaczenie.setDoOutput(true);
+            typ=polaczenie.getContentType();
+            rozmiar=polaczenie.getContentLength();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+            if(polaczenie!=null) polaczenie.disconnect();
+        }
         InputStream strumienZSieci = null;
         FileOutputStream strumienDoPliku = null;
         try {

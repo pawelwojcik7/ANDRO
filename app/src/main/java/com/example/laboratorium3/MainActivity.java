@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public TextView rozmiarPliku;
     public String tempRozmiar;
     public String tempTyp;
+    private Button przyciskPobierzPlik;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        Button przyciskPobierzPlik = (Button) findViewById(R.id.przyciskPobierzPlik);
+        przyciskPobierzPlik =findViewById(R.id.przyciskPobierzPlik);
         przyciskPobierzPlik.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,10 +125,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ustawInfoOPliku(MainActivity.InfoOPliku infoOPliku) {
-        this.tempTyp=infoOPliku.mTyp.toString();
+        this.tempTyp=infoOPliku.mTyp;
         String temp =Integer.toString(infoOPliku.mRozmiar);
         this.tempRozmiar = temp;
-        typPliku.setText(infoOPliku.mTyp.toString());
+        typPliku.setText(infoOPliku.mTyp);
         rozmiarPliku.setText(temp);
 
     }
